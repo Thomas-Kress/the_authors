@@ -1,1 +1,13 @@
 .env
+.env.test
+__pycache__/
+*.pyc
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+/roman-projekte/
+/lokal/
+exports/
+tests/fixtures/**/state/
+tests/fixtures/**/output/

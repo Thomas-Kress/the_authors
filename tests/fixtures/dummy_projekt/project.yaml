@@ -1,0 +1,11 @@
+id: dummy_projekt
+titel: DAS GEWÄCHSHAUS
+sprache: de
+zielumfang_woerter: 1200
+bible_version: 1
+stichtag_realitaet: 2026-01-01
+brief_feld: wachstumsstufe
+kapitel_typen: [prosa, notiz]
+kontrollpunkte:
+  - nach_kapitel: 1
+  - nach_jedem_akt: true

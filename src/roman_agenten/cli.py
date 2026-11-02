@@ -30,7 +30,7 @@ from roman_agenten.store.bible_validator import (
     PFLICHT_UNTERABSCHNITTE,
     validate_bible,
 )
-from roman_agenten.store.export import ExportError, export
+from roman_agenten.store.export import ExportError, export, fehlende_kapitel
 from roman_agenten.store.project import ProjectError, load_project
 
 app = typer.Typer(
@@ -341,12 +341,16 @@ def cost(projekt_id: str) -> None:
 
 @app.command("export")
 def export_cmd(projekt_id: str, format: Annotated[str, typer.Option("--format")] = "md") -> None:
-    """Freigegebene Kapitel als Manuskript exportieren."""
+    """Freigegebene Kapitel als Manuskript exportieren (md, docx, epub, pdf)."""
     p = _pipeline(_settings(), projekt_id)
+    state = p.state()
     try:
-        path = export(p.rt.project, p.rt.bible, p.state(), format)
+        path = export(p.rt.project, p.rt.bible, state, format)
     except ExportError as e:
         _fail(str(e))
+    fehlend = fehlende_kapitel(p.rt.bible, state)
+    if fehlend:
+        typer.echo(f"Warnung: nicht freigegebene Kapitel fehlen im Export: {', '.join(fehlend)}")
     typer.echo(f"Exportiert: {path}")
 
 

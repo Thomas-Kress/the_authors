@@ -130,7 +130,7 @@ roman approve <id>                  # offenen Kontrollpunkt freigeben
 roman approve <id> --ablehnen --kommentar "Ton zu kühl, bitte wärmer"
 roman resume <id>                   # nach Pause (Budget, API-Fehler) oder Absturz fortsetzen
 roman cost <id>                     # Kosten und Tokens pro Rolle
-roman export <id> --format md       # Manuskript exportieren
+roman export <id> --format md       # Manuskript exportieren (md | docx | epub | pdf)
 roman prompt chapter_writer --projekt <id> --kapitel 1 --dry-run
                                     # zusammengesetzten Prompt ohne Modellaufruf ansehen
 roman schemas --export              # JSON-Schemas aller Agentenausgaben
@@ -143,7 +143,7 @@ Typischer Ablauf:
 3. `roman run <id> --kapitel 1` – erstes Kapitel schreiben, mit `roman status <id>` den Stand ansehen.
 4. `roman approve <id>` – Ton und Stimme abnehmen; danach `roman run <id>` bzw. `--akt N`.
 5. Bei Pause oder Absturz: `roman resume <id>`.
-6. `roman export <id> --format md` – Manuskript erzeugen (Ablage in `output/manuskript/`).
+6. `roman export <id> --format md|docx|epub|pdf` – Manuskript erzeugen (Ablage in `output/manuskript/`). Nicht freigegebene Kapitel fehlen im Export; die CLI warnt davor.
 
 ## Prompts anpassen
 
